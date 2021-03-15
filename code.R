@@ -97,6 +97,9 @@ africa=read.table("data/africa.txt")
 
 
 #a)
+africa
+test = glm(miltcoup ~ oligarchy + pollib+ parties+pctvote+popn+size+numelec+numregim, data = africa, family = poisson(link = "log"))
+summary(test)
 
 
 
