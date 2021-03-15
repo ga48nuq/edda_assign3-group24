@@ -16,7 +16,7 @@ library(outliers)
 
 #read data
 
-fruitflies=read.table("data/fruitflies.txt")
+fruitflies=read.table("data/fruitflies.txt", header = TRUE)
 titanic=read.table("data/titanic.txt")
 africa=read.table("data/africa.txt")
 
@@ -25,6 +25,14 @@ africa=read.table("data/africa.txt")
 
 #a)
 
+fruitflies$loglongevity = log(fruitflies$longevity)
+attach(fruitflies)
+plot(loglongevity ~ thorax, pch = 20, col=ifelse(activity=="isolated", "red", ifelse(activity=="low", "blue", "green")))
+legend("topleft", legend=c("isolated", "low", "high"), col=c("red", "blue","green"), pch=20, box.lty=2)
+fruitflies$activity = as.factor(fruitflies$activity)
+fruitflieslm1 = lm(loglongevity~activity, data=fruitflies)
+anova(fruitflieslm1)[5]
+summary(fruitflieslm1)[4]
 
 
 
