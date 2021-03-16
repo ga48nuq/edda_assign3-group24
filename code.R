@@ -17,7 +17,7 @@ library(outliers)
 #read data
 
 fruitflies=read.table("data/fruitflies.txt", header = TRUE)
-titanic=read.table("data/titanic.txt")
+titanic=read.table("data/titanic.txt", header = TRUE)
 africa=read.table("data/africa.txt")
 
 #exercise 1 - Fruit flies
@@ -69,11 +69,12 @@ summary(fruitflieslm1)[4]
 
 
 #a)
-
-
-
-
-
+summary(titanic)
+hist(titanic,main="Age")
+hist(titanic,main="Survived")
+barplot(xtabs(Survived~Age,data=titanic))
+barplot(xtabs(Survived~PClass,data=titanic))
+barplot(xtabs(Survived~Sex,data=titanic))
 
 #b)
 
