@@ -64,7 +64,7 @@ summary(fruitflieslm1)[4]
 
 
 
-# excercise 2 - Titanic
+# exercise 2 - Titanic
 
 
 
