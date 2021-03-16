@@ -78,7 +78,8 @@ barplot(xtabs(Survived~Sex,data=titanic))
 
 #b)
 
-
+titanicglm=glm(Survived~Age+PClass+Sex,data=titanic,family=binomial)
+summary(titanicglm)
 
 
 #c)
