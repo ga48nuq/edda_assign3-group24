@@ -84,7 +84,8 @@ summary(titanicglm)
 
 #c)
 
-
+# aggregated data format
+# "This aggregated format in the form of pair(success,failure), the counts ofsuccesses and failures for each combination of levels of the factors (or values ofnumeric variables), is one of 3 possible ways to specify the responses inRfor thelogistic model. This format is not useful if there is a continuous predictor in the modelthat is different for different individuals (e.g., different ages for different individuals)."
 
 
 #d)
