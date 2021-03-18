@@ -104,6 +104,7 @@ anova(glm5,test="Chisq")
 
 
 #e)
+# not finished: issue = missing values for Age
 
 titanic$Age=as.numeric(titanic$Age)
 titanic$PClass=as.numeric(titanic$PClass)
