@@ -84,6 +84,16 @@ summary(titanicglm)
 
 #c)
 
+titanic$Age=as.numeric(titanic$Age) 
+glm3=glm(Survived~Age+PClass+Sex,data=titanic,family=binomial)
+glm3
+
+glm4=glm(Survived~Age*Sex,data=titanic,family=binomial)
+anova(glm4,test="Chisq")
+
+glm5=glm(Survived~Age*PClass,data=titanic,family=binomial)
+anova(glm5,test="Chisq")
+
 
 #d)
 
@@ -93,14 +103,39 @@ summary(titanicglm)
 
 
 
-
 #e)
-#make all variables numeric first
+
+titanic$Age=as.numeric(titanic$Age)
+titanic$PClass=as.numeric(titanic$PClass)
+titanic$Sex=as.numeric(titanic$Sex)
+titanic$Survived=as.numeric(titanic$Survived)
+
 z=chisq.test(titanic); z
 chisq.test(titanic,simulate.p.value=TRUE)
 residuals(z)
 
+z=chisq.test(titanic$Survived); z
+chisq.test(titanic$Survived,simulate.p.value=TRUE)
+residuals(z)
 
+z1=chisq.test(titanic$Age); z1
+chisq.test(titanic$Age,simulate.p.value=TRUE)
+residuals(z1)
+
+z2=chisq.test(titanic$PClass); z2
+chisq.test(titanic$PClass,simulate.p.value=TRUE)
+residuals(z2)
+
+z3=chisq.test(titanic$Sex); z3
+chisq.test(titanic$Sex,simulate.p.value=TRUE)
+residuals(z3)
+
+
+titanicdf <- select(titanic, -Age) %>% head()
+
+x=chisq.test(titanicdf); x
+chisq.test(titanicdf,simulate.p.value=TRUE)
+residuals(x)  
 
 #f)
 
