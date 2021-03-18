@@ -70,8 +70,8 @@ summary(fruitflieslm1)[4]
 
 #a)
 summary(titanic)
-hist(titanic,main="Age")
-hist(titanic,main="Survived")
+# hist(titanic,main="Age")
+# hist(titanic,main="Survived")
 barplot(xtabs(Survived~Age,data=titanic))
 barplot(xtabs(Survived~PClass,data=titanic))
 barplot(xtabs(Survived~Sex,data=titanic))
