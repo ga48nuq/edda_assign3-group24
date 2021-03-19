@@ -18,7 +18,7 @@ library(outliers)
 
 fruitflies=read.table("data/fruitflies.txt", header = TRUE)
 titanic=read.table("data/titanic.txt", header = TRUE)
-africa=read.table("data/africa.txt")
+africa=read.table("data/africa.txt", header = TRUE)
 
 #exercise 1 - Fruit flies
 
@@ -204,7 +204,8 @@ summary(test)
 
 #b)
 
-
+summary(lm(miltcoup~oligarchy + pollib + parties + pctvote + 
+             popn + size + numelec + numregim,data=africa))
 
 
 #c)
