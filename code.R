@@ -33,18 +33,62 @@ fruitflies$activity = as.factor(fruitflies$activity)
 fruitflieslm1 = lm(loglongevity~activity, data=fruitflies)
 anova(fruitflieslm1)[5]
 summary(fruitflieslm1)[4]
+# above option 1, below option 2
+fruitflies["loglongevity"] <- log(fruitflies["longevity"])
+head(fruitflies, 5)
+  
+
+plot(longevity ~ thorax, pch = toupper(as.character(activity)), data = fruitflies)
 
 
+contrasts(fruitflies$activity) <- contr.sum
+fruitfliesaov <- lm(loglongevity ~ activity, data = fruitflies)
+anova(fruitfliesaov)
+
+coefficients <- summary(fruitfliesaov)$coefficients
+coeff_intercept <- coefficients[[1]]
+coeff_estimate_high <- coefficients[[2]]
+coeff_estimate_isolated <- coefficients[[3]]
+coeff_estimate_low <- -coeff_estimate_high - coeff_estimate_isolated
+mean_thorax <- mean(fruitflies$thorax)
+(loglongevity_high <- coeff_intercept + coeff_estimate_high)
+(loglongevity_low <- coeff_intercept + coeff_estimate_low)
+(loglongevity_isolated <- coeff_intercept + coeff_estimate_isolated)
+exp(loglongevity_high)
+exp(loglongevity_low)
+exp(loglongevity_isolated)
 
 
 
 #b)
+contrasts(fruitflies$activity) <- contr.sum
+fruitfliesaov <- lm(loglongevity ~ thorax + activity, data = fruitflies)
+anova(fruitfliesaov)
 
-
+coefficients <- summary(fruitfliesaov)$coefficients
+coeff_intercept <- coefficients[[1]]
+coeff_thorax <- coefficients[[2]]
+coeff_estimate_high <- coefficients[[3]]
+coeff_estimate_isolated <- coefficients[[4]]
+coeff_estimate_low <- -coeff_estimate_high - coeff_estimate_isolated
+mean_thorax <- mean(fruitflies$thorax)
+(loglongevity_high <- coeff_intercept + coeff_thorax * mean_thorax + coeff_estimate_high)
+(loglongevity_isolated <- coeff_intercept + coeff_thorax * mean_thorax + coeff_estimate_isolated)
+(loglongevity_low <- coeff_intercept + coeff_thorax * mean_thorax + coeff_estimate_low)
+exp(loglongevity_high)
+exp(loglongevity_isolated)
+exp(loglongevity_low)
 
 
 #c)
+high = fruitflies[fruitflies$activity == "high", ]
+isolated = fruitflies[fruitflies$activity == "isolated", ]
+low = fruitflies[fruitflies$activity == "low", ]
 
+par(mfrow = c(1, 3))
+plot(isolated$thorax, isolated$loglongevity, main = "Isolated sexual activity")
+plot(low$thorax, low$loglongevity, main = "Low sexual activity")
+plot(high$thorax, high$loglongevity, main = "High sexual activity")
 
 
 
@@ -55,14 +99,19 @@ summary(fruitflieslm1)[4]
 
 
 #e)
-
+par(mfrow = c(1, 2))
+fruitfliesaov <- lm(loglongevity ~ thorax + activity, data = fruitflies)
+plot(fruitfliesaov, which = c(1, 2))
+shapiro.test(residuals(fruitfliesaov))
 
 
 
 
 #f)
-
-
+par(mfrow = c(1, 2))
+fruitfliesaov <- lm(longevity ~ thorax + activity, data = fruitflies)
+plot(fruitfliesaov, which = c(1, 2))
+shapiro.test(residuals(fruitfliesaov))
 
 # exercise 2 - Titanic
 
