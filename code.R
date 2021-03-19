@@ -240,5 +240,5 @@ africadf$size_new <- avsize
 africadf$numelec_new <- avnumelec
 africadf$numregim_new <- avnumregim
 
-predict(glm(pollib~oligarchy_new + miltcoup_new + parties_new + pctvote_new + 
+predict(glm(miltcoup_new~oligarchy_new + pollib + parties_new + pctvote_new + 
               popn_new + size_new + numelec_new + numregim_new,data=africadf))
