@@ -211,5 +211,5 @@ summary(lm(miltcoup~oligarchy + pollib + parties + pctvote +
 #c)
 
 
-
+predict(test)
 
