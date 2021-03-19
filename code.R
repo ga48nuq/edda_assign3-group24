@@ -191,7 +191,7 @@ residuals(x)
 
 
 
-# exercise 3 - Military coups jn Africa
+# exercise 3 - Military coups in Africa
 
 
 #a)
