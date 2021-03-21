@@ -212,48 +212,26 @@ summary(lm(miltcoup~oligarchy + pollib + parties + pctvote +
 
 
 #c)
-# mean(africa$miltcoup)
-# mean(africa$oligarchy)
-# mean(africa$parties)
-# mean(africa$pctvote)
-# mean(africa$popn)
-# mean(africa$size)
-# mean(africa$numelec)
-# mean(africa$numregim)
-# 
-# africadf <- select(africa, -miltcoup, -oligarchy, -parties, -pctvote, 
-#                    -popn, -size, -numelec, -numregim)
-# africadf
-# 
-# avmiltcoup = c(1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333,1.583333)
-# avoligarchy = c(5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222,5.222222)
-# avparties = c(17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333,17.08333)
-# avpctvote = c(32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139,32.11139)
-# avpopn = c(11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292,11.57292)
-# avsize = c(484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972,484.5972)
-# avnumelec = c(6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222,6.722222)
-# avnumregim = c(2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75,2.75)
-# 
-# africadf$miltcoup_new <- avmiltcoup
-# africadf$oligarchy_new <- avoligarchy
-# africadf$parties_new <- avparties
-# africadf$pctvote_new <- avpctvote
-# africadf$popn_new <- avpopn
-# africadf$size_new <- avsize
-# africadf$numelec_new <- avnumelec
-# africadf$numregim_new <- avnumregim
-# 
-# predict(glm(miltcoup_new~oligarchy_new + pollib + parties_new + pctvote_new + 
-#               popn_new + size_new + numelec_new + numregim_new,data=africadf))
+
+africa$pollib = factor(africa$pollib)
+
+a = mean(africa$oligarchy)
+b = mean(africa$parties)
+mean(africa$oligarchy)
+mean(africa$parties)
+
+test1 = glm(miltcoup ~ oligarchy + pollib+ parties, data = africa, family = poisson(link = "log"))
+
+pollib_0 = data.frame(oligarchy = a, parties = b, pollib ="0" )
+pollib_1 = data.frame(oligarchy = a, parties = b, pollib ="1")
+pollib_2 = data.frame(oligarchy = a, parties = b, pollib ="2")
+
+predict(test1 , pollib_0 , type ="response") 
+predict(test1 , pollib_1 , type ="response")
+predict(test1 , pollib_2 , type ="response")
 
 
-predict(test, data.frame(pollib="0", oligarchy=mean(africa$oligarchy), parties=mean(africa$parties)))[[1]]
-predict(test, data.frame(pollib="1", oligarchy=mean(africa$oligarchy), parties=mean(africa$parties)))[[1]]
-predict(test, data.frame(pollib="2", oligarchy=mean(africa$oligarchy), parties=mean(africa$parties)))[[1]]
 
-#print("pollib 0:")
-print(exp(0.207981 + 0.091466*mean(africa$oligarchy) -0.495414*0 - 1.112086*0 + 0.022358*mean(africa$parties)))
-#print("pollib 1:")
-print(exp(0.207981 + 0.091466*mean(africa$oligarchy) -0.495414*1 - 1.112086*0 + 0.022358*mean(africa$parties)))
-#print("pollib 2:")
-print(exp(0.207981 + 0.091466*mean(africa$oligarchy) -0.495414*0 - 1.112086*1 + 0.022358*mean(africa$parties)))
+
+
+
