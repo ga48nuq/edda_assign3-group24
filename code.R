@@ -155,7 +155,7 @@ anova(glm5,test="Chisq")
 
 
 #e)
-# not finished: issue = missing values for Age
+
 titanic %>% drop_na()
 titanic$Age=as.numeric(titanic$Age)
 #titanic$Age=na.omit(titanic$Age)
@@ -163,28 +163,28 @@ titanic$PClass=as.numeric(titanic$PClass)
 titanic$Sex=as.numeric(titanic$Sex)
 titanic$Survived=as.numeric(titanic$Survived)
 
-z=chisq.test(titanic); z
-chisq.test(titanic,simulate.p.value=TRUE)
-residuals(z)
+# z=chisq.test(titanic); z
+# chisq.test(titanic,simulate.p.value=TRUE)
+# residuals(z)
+# 
+# z=chisq.test(titanic$Survived); z
+# chisq.test(titanic$Survived,simulate.p.value=TRUE)
+# residuals(z)
+# 
+# z1=chisq.test(titanic$Age); z1
+# chisq.test(titanic$Age,simulate.p.value=TRUE)
+# residuals(z1)
+# 
+# z2=chisq.test(titanic$PClass); z2
+# chisq.test(titanic$PClass,simulate.p.value=TRUE)
+# residuals(z2)
+# 
+# z3=chisq.test(titanic$Sex); z3
+# chisq.test(titanic$Sex,simulate.p.value=TRUE)
+# residuals(z3)
 
-z=chisq.test(titanic$Survived); z
-chisq.test(titanic$Survived,simulate.p.value=TRUE)
-residuals(z)
 
-z1=chisq.test(titanic$Age); z1
-chisq.test(titanic$Age,simulate.p.value=TRUE)
-residuals(z1)
-
-z2=chisq.test(titanic$PClass); z2
-chisq.test(titanic$PClass,simulate.p.value=TRUE)
-residuals(z2)
-
-z3=chisq.test(titanic$Sex); z3
-chisq.test(titanic$Sex,simulate.p.value=TRUE)
-residuals(z3)
-
-
-titanicdf <- select(titanic, -Age) %>% head()
+titanicdf <- select(titanic, -Age, -Name) %>% head()
 
 x=chisq.test(titanicdf); x
 chisq.test(titanicdf,simulate.p.value=TRUE)
@@ -245,3 +245,15 @@ africadf$numregim_new <- avnumregim
 
 predict(glm(miltcoup_new~oligarchy_new + pollib + parties_new + pctvote_new + 
               popn_new + size_new + numelec_new + numregim_new,data=africadf))
+
+
+predict(test, data.frame(pollib="0", oligarchy=mean(africa$oligarchy), parties=mean(africa$parties)))[[1]]
+predict(afrglm, data.frame(pollib="1", oligarchy=mean(afr$oligarchy), parties=mean(afr$parties)))[[1]]
+predict(afrglm, data.frame(pollib="2", oligarchy=mean(afr$oligarchy), parties=mean(afr$parties)))[[1]]
+
+print("pollib 0:")
+print(exp(0.207981 + 0.091466*mean(afr$oligarchy) -0.495414*0 - 1.112086*0 + 0.022358*mean(afr$parties)))
+print("pollib 1:")
+print(exp(0.207981 + 0.091466*mean(afr$oligarchy) -0.495414*1 - 1.112086*0 + 0.022358*mean(afr$parties)))
+print("pollib 2:")
+print(exp(0.207981 + 0.091466*mean(afr$oligarchy) -0.495414*0 - 1.112086*1 + 0.022358*mean(afr$parties)))
