@@ -226,11 +226,13 @@ pollib_0 = data.frame(oligarchy = a, parties = b, pollib ="0" )
 pollib_1 = data.frame(oligarchy = a, parties = b, pollib ="1")
 pollib_2 = data.frame(oligarchy = a, parties = b, pollib ="2")
 
-predict(test1 , pollib_0 , type ="response") 
-predict(test1 , pollib_1 , type ="response")
-predict(test1 , pollib_2 , type ="response")
+ans_pollib0 = predict(test1 , pollib_0 , type ="response") 
+ans_pollib1 = predict(test1 , pollib_1 , type ="response")
+ans_pollib2 = predict(test1 , pollib_2 , type ="response")
 
-
+print(ans_pollib0)
+print(ans_pollib1)
+print(ans_pollib2)
 
 
 
