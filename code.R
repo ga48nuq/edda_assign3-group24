@@ -162,10 +162,10 @@ titanic$Age=as.numeric(titanic$Age)
 titanic$PClass=as.numeric(titanic$PClass)
 titanic$Sex=as.numeric(titanic$Sex)
 titanic$Survived=as.numeric(titanic$Survived)
-
-# z=chisq.test(titanic); z
-# chisq.test(titanic,simulate.p.value=TRUE)
-# residuals(z)
+titanicdf <- select(titanic, -Name) %>% head()
+z=chisq.test(titanicdf); z
+chisq.test(titanicdf,simulate.p.value=TRUE)
+residuals(z)
 # 
 # z=chisq.test(titanic$Survived); z
 # chisq.test(titanic$Survived,simulate.p.value=TRUE)
@@ -184,11 +184,11 @@ titanic$Survived=as.numeric(titanic$Survived)
 # residuals(z3)
 
 
-titanicdf <- select(titanic, -Age, -Name) %>% head()
-
-x=chisq.test(titanicdf); x
-chisq.test(titanicdf,simulate.p.value=TRUE)
-residuals(x)  
+# titanicdf <- select(titanic, -Age, -Name) %>% head()
+# 
+# x=chisq.test(titanicdf); x
+# chisq.test(titanicdf,simulate.p.value=TRUE)
+# residuals(x)  
 
 #f)
 
