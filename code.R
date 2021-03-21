@@ -6,6 +6,7 @@ rm(list=ls())
 #install.packages("dplyr")
 #install.packages("stargazer")
 #install.packages("outliers")
+#install.packages("tidyr")
 
 
 library(readr)
@@ -13,6 +14,7 @@ library(tidyverse)
 library(dplyr)
 library(stargazer)
 library(outliers)
+library(tidyr)
 
 #read data
 
@@ -154,8 +156,9 @@ anova(glm5,test="Chisq")
 
 #e)
 # not finished: issue = missing values for Age
-
+titanic %>% drop_na()
 titanic$Age=as.numeric(titanic$Age)
+#titanic$Age=na.omit(titanic$Age)
 titanic$PClass=as.numeric(titanic$PClass)
 titanic$Sex=as.numeric(titanic$Sex)
 titanic$Survived=as.numeric(titanic$Survived)
