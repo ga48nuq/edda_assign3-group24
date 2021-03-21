@@ -248,13 +248,12 @@ summary(lm(miltcoup~oligarchy + pollib + parties + pctvote +
 
 
 predict(test, data.frame(pollib="0", oligarchy=mean(africa$oligarchy), parties=mean(africa$parties)))[[1]]
-
-predict(afrglm, data.frame(pollib="1", oligarchy=mean(afr$oligarchy), parties=mean(afr$parties)))[[1]]
-predict(afrglm, data.frame(pollib="2", oligarchy=mean(afr$oligarchy), parties=mean(afr$parties)))[[1]]
+predict(afrglm, data.frame(pollib="1", oligarchy=mean(africa$oligarchy), parties=mean(africa$parties)))[[1]]
+predict(afrglm, data.frame(pollib="2", oligarchy=mean(africa$oligarchy), parties=mean(africa$parties)))[[1]]
 
 print("pollib 0:")
-print(exp(0.207981 + 0.091466*mean(afr$oligarchy) -0.495414*0 - 1.112086*0 + 0.022358*mean(afr$parties)))
+print(exp(0.207981 + 0.091466*mean(africa$oligarchy) -0.495414*0 - 1.112086*0 + 0.022358*mean(africa$parties)))
 print("pollib 1:")
-print(exp(0.207981 + 0.091466*mean(afr$oligarchy) -0.495414*1 - 1.112086*0 + 0.022358*mean(afr$parties)))
+print(exp(0.207981 + 0.091466*mean(africa$oligarchy) -0.495414*1 - 1.112086*0 + 0.022358*mean(africa$parties)))
 print("pollib 2:")
-print(exp(0.207981 + 0.091466*mean(afr$oligarchy) -0.495414*0 - 1.112086*1 + 0.022358*mean(afr$parties)))
+print(exp(0.207981 + 0.091466*mean(africa$oligarchy) -0.495414*0 - 1.112086*1 + 0.022358*mean(africa$parties)))
